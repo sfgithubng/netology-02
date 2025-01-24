@@ -1,0 +1,5 @@
+.idea/
+CMakeLists.txt
+clion*
+cmake-build-debug/
+main*
