@@ -85,4 +85,6 @@ int main() {
     }
   }
   std::cout << "See you!";
+
+  return 0;
 }
