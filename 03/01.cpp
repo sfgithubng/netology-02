@@ -38,27 +38,27 @@ public:
     }
 
     double add() {
-        return static_cast<double>(this->num1 + this->num2);
+        return this->num1 + this->num2;
     }
 
     double multiply() {
-        return static_cast<double>(this->num1 * this->num2);
+        return this->num1 * this->num2;
     }
 
     double subtract_1_2() {
-        return static_cast<double>(this->num1 - this->num2);
+        return this->num1 - this->num2;
     }
 
     double subtract_2_1() {
-        return static_cast<double>(this->num2 - this->num1);
+        return this->num2 - this->num1;
     }
 
     double divide_1_2() {
-        return static_cast<double>(this->num1 / this->num2);
+        return this->num1 / this->num2;
     }
 
     double divide_2_1() {
-        return static_cast<double>(this->num2 / this->num1);
+        return this->num2 / this->num1;
     }
 
     bool set_num1(double num1) {
