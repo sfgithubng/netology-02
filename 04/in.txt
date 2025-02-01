@@ -1,4 +1,4 @@
-3
+5
 Moscow
 Builders
 34
@@ -11,3 +11,11 @@ Novosibirsk
 Mira
 85
 64
+Moscow
+Alipenko
+78
+23
+Anapa
+Seaside
+45
+12

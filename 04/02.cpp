@@ -35,7 +35,26 @@ public:
     std::string getFullAddress() {
         return (this->city + ", " + this->street + ", " + std::to_string(this->houseNo) + ", " + std::to_string(this->apartmentNo) + "\n");
     }
+
+    friend void sortAddressesFromFile(std::vector<Address>*);
 };
+
+void sortAddressesFromFile(std::vector<Address>* addressesFromFile) {
+    bool innerIterationSortPerformed{false};
+    for (int outerIndex = 0; outerIndex < addressesFromFile->size(); ++outerIndex) {
+        innerIterationSortPerformed = false;
+        for (int innerIndex = addressesFromFile->size() - 1; innerIndex > outerIndex; --innerIndex) {
+            if ((*addressesFromFile)[innerIndex].city < (*addressesFromFile)[innerIndex-1].city) {
+                std::swap((*addressesFromFile)[innerIndex], (*addressesFromFile)[innerIndex-1]);
+                innerIterationSortPerformed = true;
+            }
+             }
+        std::cout << std::endl;
+        if (!innerIterationSortPerformed) {
+            break;
+        }
+       }
+}
 
 int main() {
     std::string inFilename = "in.txt";
@@ -78,14 +97,19 @@ int main() {
         std::cout << "Encountered an error while accessing in.txt, please check if the file exists" << std::endl;
     }
 
+    if (addressesInFile != addressesFromFile.size()) {
+        std::cerr << "Actual amount of addresses in in.txt doesn't match the declaration in the 1st line, please check";
+        return 1;
+    }
+
+    sortAddressesFromFile(&addressesFromFile);
+
     std::vector<std::string> outputAddresses{};
     for (std::vector<Address>::iterator addressEntryIterator = addressesFromFile.begin();
          addressEntryIterator != addressesFromFile.end();
          ++addressEntryIterator) {
         outputAddresses.push_back(addressEntryIterator->getFullAddress());
     }
-
-    std::sort(outputAddresses.begin(), outputAddresses.end());
 
     std::string outFilename = "out.txt";
     std::ofstream outFileStream;
