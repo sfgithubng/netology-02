@@ -304,6 +304,11 @@ int main() {
     std::unique_ptr<Shape> arbitraryShapeInstance = std::make_unique<Shape>();
     print_info(arbitraryShapeInstance);
 
+    std::map<std::string, int32_t> triangleSides = {{"a", 20}, {"b", 20}, {"c", 10}};
+    std::map<std::string, int32_t> triangleCorners = {{"A", 90}, {"B", 45}, {"C", 45}};
+    std::unique_ptr<Shape> triangleInstance = std::make_unique<Triangle>("Triangle", triangleSides, triangleCorners);
+    print_info(triangleInstance);
+
     std::map<std::string, int32_t> rightTriangleSides = {{"a", 20}, {"b", 20}, {"c", 10}};
     std::map<std::string, int32_t> rightTriangleCorners = {{"A", 90}, {"B", 45}, {"C", 45}};
     std::unique_ptr<Shape> rightTriangleInstance = std::make_unique<RightTriangle>("Right Triangle", rightTriangleSides, rightTriangleCorners);
