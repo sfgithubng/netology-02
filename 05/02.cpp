@@ -8,6 +8,7 @@ constexpr int8_t rightCornerDegrees = 90;
 constexpr size_t triangleSideConstraint = 3;
 constexpr size_t triangleCornerConstraint = 3;
 constexpr u_int8_t triangleCornerAngleConstraint = 180;
+constexpr u_int16_t quadrilateralCornerAngleConstraint = 360;
 constexpr size_t quadrilateralSideConstraint = 4;
 constexpr size_t quadrilateralCornerConstraint = 4;
 
@@ -179,11 +180,20 @@ public:
         std::map<std::string, int32_t> constrSides, std::map<std::string, int32_t> constrCorners) :
         Shape(constrName, constrSides, constrCorners) {
         if (this->sideCount != quadrilateralSideConstraint) {
-            throw std::invalid_argument("Quadrilateral side count must be " + std::to_string(triangleSideConstraint) + " terminating");
+            throw std::invalid_argument("Quadrilateral side count must be " + std::to_string(quadrilateralSideConstraint) + " terminating");
         }
 
         if (this->cornerCount != quadrilateralCornerConstraint) {
-            throw std::invalid_argument("Quadrilateral corner count must be " + std::to_string(triangleCornerConstraint) + " terminating");
+            throw std::invalid_argument("Quadrilateral corner count must be " + std::to_string(quadrilateralCornerConstraint) + " terminating");
+        }
+
+        u_int16_t cornerAngleSum{0};
+        for (const auto& [cornerName, cornerValue] : this->corners) {
+            cornerAngleSum += cornerValue;
+        }
+
+        if (cornerAngleSum != quadrilateralCornerAngleConstraint) {
+            throw std::invalid_argument("Quadrilateral corner angle total must be " + std::to_string(quadrilateralCornerAngleConstraint) + ", terminating");
         }
     }
 
